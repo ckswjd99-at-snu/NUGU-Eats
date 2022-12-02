@@ -16,7 +16,7 @@ router.post('/Response.Restaurant', (req, res) => {
   let response = {
     "version": "2.0",
     "resultCode": "OK",
-    "output": Object.fromEntries(Object.entries(req.body.action.parameters).map((key, val) => [key, val.value]))
+    "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
   }
   if (requestedCategory = req.body.action?.food_category.value) {
     switch (requestedCategory) {
