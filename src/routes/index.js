@@ -42,8 +42,31 @@ router.post('/Response.RestaurantInfo', (req, res) => {
   const findRestaurant = restaurantData.find(row => row.name == requestedRestaurant)
   if (!findRestaurant) {
     response.resultCode = "no_such_restaurant"
+    res.send(response)
+    return
   }
-  // response.output.restaurant_list = 
+
+  switch(requestedInfo) {
+    case "주소": {
+      response.output.requested_info = findRestaurant[0]["address"]
+      break;
+    }
+    case "전화번호": {
+      response.output.requested_info = findRestaurant[0]["phone"]
+      break;
+    }
+    case "메뉴": {
+      response.output.requested_info = findRestaurant[0]["menu"].join(', ')
+      break;
+    }
+  }
+  
+
+  if (!response.output.requested_info) {
+    response.resultCode = "no_such_info"
+    res.send(response)
+    return
+  }
   
   res.send(response)
 })
