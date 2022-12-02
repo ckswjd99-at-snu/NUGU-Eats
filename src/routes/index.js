@@ -38,6 +38,7 @@ router.post('/Response.RestaurantInfo', (req, res) => {
     "resultCode": "OK",
     "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
   }
+  console.log(requestedRestaurant, requestedInfo)
 
   const findRestaurant = restaurantData.find(row => row.name == requestedRestaurant)
   if (!findRestaurant) {
