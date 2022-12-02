@@ -124,7 +124,7 @@ router.post('/Order.AddMenu', (req, res) => {
 
   console.log(requestedCount)
 
-  order[requestedMenu] += parseInt(requestedCount)
+  order[requestedMenu] = order[requestedMenu] ? order[requestedMenu] + parseInt(requestedCount) : parseInt(requestedCount)
 
   res.send(response)
 })
@@ -165,7 +165,7 @@ router.post('/Order.Check', (req, res) => {
     let smallsum = price * value
     totalsum += smallsum
     return `${key} ${value}개`
-  }).join(', ') + ` 총 ${totalsum}원`
+  }).join(', ') + `, 총 ${totalsum}원`
 
   res.send(response)
 })
