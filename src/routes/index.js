@@ -50,15 +50,15 @@ router.post('/Response.RestaurantInfo', (req, res) => {
 
   switch(requestedInfo) {
     case "주소": {
-      response.output.requested_info = findRestaurant[0]["address"]
+      response.output.requested_info = findRestaurant["address"]
       break;
     }
     case "전화번호": {
-      response.output.requested_info = findRestaurant[0]["phone"]
+      response.output.requested_info = findRestaurant["phone"]
       break;
     }
     case "메뉴": {
-      response.output.requested_info = findRestaurant[0]["menu"].join(', ')
+      response.output.requested_info = findRestaurant["menu"].join(', ')
       break;
     }
   }
