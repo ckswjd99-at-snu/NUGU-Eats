@@ -6,15 +6,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/health', (req, res) => {
+  res.send('OK')
+})
+
 
 router.post('/Response.Restaurant', (req, res) => {
   let requestedCategory = ''
   let response = {
     "version": "2.0",
     "resultCode": "OK",
-    "output": {
-      "restaurant_list": "엄마손칼국수, 기절초풍왕순대",
-    },
+    "output": Object.fromEntries(Object.entries(req.body.action.parameters).map((key, val) => [key, val.value]))
   }
   if (requestedCategory = req.body.action?.food_category.value) {
     switch (requestedCategory) {
