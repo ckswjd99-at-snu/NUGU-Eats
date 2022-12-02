@@ -130,7 +130,7 @@ module.exports = [
         price: 15000
       },
     ]
-  }
+  },
   {
     category: '채식',
     name: '샐러드로우&트라타 서울대입구점',
