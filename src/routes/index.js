@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var restaurantData = require('../data/restaurant')
-console.log(restaurantData)
+// console.log(restaurantData)
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -38,9 +38,10 @@ router.post('/Response.RestaurantInfo', (req, res) => {
     "resultCode": "OK",
     "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
   }
-  console.log(requestedRestaurant, requestedInfo)
-
+  
   const findRestaurant = restaurantData.find(row => row.name == requestedRestaurant)
+  console.log(req.body)
+  console.log(requestedRestaurant, requestedInfo, findRestaurant)
   if (!findRestaurant) {
     response.resultCode = "no_such_restaurant"
     res.send(response)
