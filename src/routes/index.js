@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/Response.Restaurant', (req, res) => {
-  console.log(req)
+  console.log(req.body)
   res.send({
     'hi': 'hello'
   })
