@@ -58,7 +58,7 @@ router.post('/Response.RestaurantInfo', (req, res) => {
       break;
     }
     case "메뉴": {
-      response.output.requested_info = findRestaurant["menu"].map(menuobj => menuobj.menu_name).join(', ')
+      response.output.requested_info = findRestaurant["menu"].map(menuobj => `${menuobj.menu_name} ${menuobj.price}원`).join(', ')
       break;
     }
   }
