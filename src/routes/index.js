@@ -113,10 +113,13 @@ router.post('/Order.AddMenu', (req, res) => {
     return
   }
 
-  if (requestedRestaurant != orderRestaurant) {
+  if (requestedRestaurant !== orderRestaurant && orderRestaurant !== '') {
     response.resultCode = "restaurant_changed"
     res.send(response)
     return
+  }
+  if (orderRestaurant === '') {
+    orderRestaurant = requestedRestaurant
   }
 
   order[requestedMenu] += parseInt(requestedCount)
@@ -144,6 +147,12 @@ router.post('/Order.Check', (req, res) => {
     "version": "2.0",
     "resultCode": "OK",
     "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
+  }
+
+  if (orderRestaurant === '') {
+    response.resultCode = "no_order"
+    res.send(response)
+    return
   }
   
   let totalsum = 0
