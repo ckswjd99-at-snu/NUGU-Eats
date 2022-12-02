@@ -30,4 +30,22 @@ router.post('/Response.Restaurant', (req, res) => {
   res.send(response)
 })
 
+router.post('/Response.RestaurantInfo', (req, res) => {
+  let requestedRestaurant = req.body.action.parameters?.restaurant_name.value
+  let requestedInfo = req.body.action.parameters?.restaurant_info.value
+  let response = {
+    "version": "2.0",
+    "resultCode": "OK",
+    "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
+  }
+
+  const findRestaurant = restaurantData.find(row => row.name == requestedRestaurant)
+  if (!findRestaurant) {
+    response.resultCode = "no_such_restaurant"
+  }
+  // response.output.restaurant_list = 
+  
+  res.send(response)
+})
+
 module.exports = router;
