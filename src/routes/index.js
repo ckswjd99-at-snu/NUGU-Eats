@@ -122,6 +122,8 @@ router.post('/Order.AddMenu', (req, res) => {
     orderRestaurant = requestedRestaurant
   }
 
+  console.log(requestedCount)
+
   order[requestedMenu] += parseInt(requestedCount)
 
   res.send(response)
