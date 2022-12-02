@@ -18,7 +18,7 @@ router.post('/Response.Restaurant', (req, res) => {
     "resultCode": "OK",
     "output": Object.fromEntries(Object.entries(req.body.action.parameters).map(([key, val]) => [key, val.value]))
   }
-  if (requestedCategory = req.body.action?.food_category.value) {
+  if (requestedCategory = req.body.action.parameters?.food_category.value) {
     switch (requestedCategory) {
       case '한식': {
         response.output.restaurant_list = '엄마손칼국수, 기절초풍왕순대'
